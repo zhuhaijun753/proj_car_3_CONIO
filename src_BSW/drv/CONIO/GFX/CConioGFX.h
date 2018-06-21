@@ -1,0 +1,42 @@
+/**
+ * \file	CConioGFX.h
+ * \author	Rahul Raj 	Hochschule Darmstadt - rahul.r.rajan@stud.h-da.de
+ * \date	14.05.2017
+ * \version	0.1
+ *
+ * \brief ILI9341 Graphics Library Port
+ *
+ * Changelog:\n
+ *
+ * \copyright Copyright ©2016
+ * Department of electrical engineering and information technology, Hochschule Darmstadt - University of applied sciences (h_da). All Rights Reserved.
+ * Permission to use, copy, modify, and distribute this software and its documentation for educational, and research purposes in the context of non-commercial
+ * (unless permitted by h_da) and official h_da projects, is hereby granted for enrolled students of h_da, provided that the above copyright notice,
+ * this paragraph and the following paragraph appear in all copies, modifications, and distributions.
+ * Contact Prof.Dr.-Ing. Peter Fromm, peter.fromm@h-da.de, Birkenweg 8 64295 Darmstadt - GERMANY for commercial requests.
+ *
+ * \warning This software is a PROTOTYPE version and is not designed or intended for use in production, especially not for safety-critical applications!
+ * The user represents and warrants that it will NOT use or redistribute the Software for such purposes.
+ * This prototype is for research purposes only. This software is provided "AS IS," without a warranty of any kind.
+ */
+
+
+#ifndef SRC_BSW_DRV_CONIO_GFX_CCONIOGFX_H_
+#define SRC_BSW_DRV_CONIO_GFX_CCONIOGFX_H_
+
+#include "GFX/Adafruit_GFX/Adafruit_GFX.h"
+
+class CConioGFX : public Adafruit_GFX {
+public:
+	CConioGFX();
+
+	virtual void drawPixel(int16_t x, int16_t y, uint16_t color);
+
+	virtual void fillScreen(uint16_t color);
+
+	virtual void fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
+
+	virtual ~CConioGFX();
+};
+
+#endif /* SRC_ASW_LIBS_ADAFRUIT_GFX_ADAFRUIT_GFX_PORT_H_ */

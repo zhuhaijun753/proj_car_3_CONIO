@@ -1,0 +1,17 @@
+; C:\Users\Fromm\Desktop\Lidar.xmt
+; CAN messages saved by PCAN-View 3.2.4
+;
+; Columns descriptions:
+; ~~~~~~~~~~~~~~~~~~~~~
+; +Message ID
+; |            +Cycle time in ms (0=manual)
+; |            |  +Length of message
+; |            |  |  +Frame type: D)ata or R)emote request
+; |            |  |  |  +Message data
+; |            |  |  |  |
+605h           0  8  D 23h 3Dh 13h 00h 68h 01h 14h 3Ch ; Lidar: Init with speed 60, angle 20 and resolution 360
+605h           0  8  D 23h 3Ch 13h 00h 00h 00h 00h 00h ; LIDAR: speed 0,0,0
+605h           0  8  D 23h 3Ch 13h 00h 00h 00h 00h 32h ; LIDAR: right - speed 50,0,0
+605h           0  8  D 23h 3Ch 13h 00h 00h 00h 32h 00h ; LIDAR: forward - speed 0,50,0
+605h           0  8  D 23h 3Ch 13h 00h 00h 00h 00h CEh ; LIDAR: left - speed -50,0,0
+605h           0  8  D 23h 3Ch 13h 00h 00h 00h CEh 00h ; LIDAR: reverse - speed 0,-50,0

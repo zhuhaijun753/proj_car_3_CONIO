@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--GTQ File-->
+<gtqconfig>
+	<libinfo name="advanced-tricore_miniMcds.ltq" major="1" minor="0">
+	</libinfo>
+	<enum name="def_signal">
+		<item name="BreakIn" value="breakin">
+		</item>
+		<item name="Fifo Tigger 0" value="fifo_trg0">
+		</item>
+		<item name="Fifo Tigger 1" value="fifo_trg1">
+		</item>
+		<param name="coreX_select">
+			<switch>
+				<case equal="Nothing">
+				</case>
+				<default>
+					<item name="CoreX dcu_isr" value="coreX_dcu_isr">
+					</item>
+					<item name="CoreX dcu_sus" value="coreX_dcu_sus">
+					</item>
+					<item name="CoreX dcu_idle" value="coreX_dcu_idle">
+					</item>
+					<item name="CoreX dcu_halt" value="coreX_dcu_halt">
+					</item>
+				</default>
+			</switch>
+		</param>
+	</enum>
+	<enum name="PLS13_Operators">
+		<item name=" " value=" ">
+		</item>
+		<item name="not" value="not">
+		</item>
+		<item name="rise" value="rise">
+		</item>
+		<item name="fall" value="fall">
+		</item>
+	</enum>
+	<enum name="PLS13_Synchronization">
+		<item name="No Sync" value="0">
+		</item>
+		<item name="Sync" value="1">
+		</item>
+		<item name="Subroutine Only" value="2">
+		</item>
+	</enum>
+	<enum name="PLS13_TimerPrescaler">
+		<item name="1000ms" value="1000ms">
+		</item>
+		<item name="1ms" value="1ms">
+		</item>
+		<item name="1us" value="1us">
+		</item>
+		<item name="500ns" value="500ns">
+		</item>
+		<item name="250ns" value="250ns">
+		</item>
+	</enum>
+	<enum name="PLS13_Trigger">
+		<item name="pre" value="0">
+		</item>
+		<item name="mid" value="50">
+		</item>
+		<item name="98%" value="98">
+		</item>
+		<item name="post" value="100">
+		</item>
+	</enum>
+	<enum name="predefactions">
+		<separator name="-------- Trigger --------">
+		</separator>
+		<item name="trigger trace" value="trigger">
+		</item>
+		<separator>
+		</separator>
+		<separator name="-------- Core --------">
+		</separator>
+		<item name="store Core PC" value="store coreX_pc">
+		</item>
+		<item name="force Core PC sync" value="emit mcds.ptu_sync">
+		</item>
+		<item name="store Core subroutine" value="emit mcds.ptu_nesting">
+		</item>
+		<item name="store Core data addr" value="store coreX_addr">
+		</item>
+		<item name="store Core data" value="store coreX_data">
+		</item>
+		<item name="store Core read addr" value="emit mcds.dtu_radr">
+		</item>
+		<separator>
+		</separator>
+		<separator name="-------- Timers --------">
+		</separator>
+		<item name="start" value="start">
+			<usearg type="PLS13def_Timer">
+			</usearg>
+		</item>
+		<item name="clear" value="clear">
+			<usearg type="PLS13def_Timer">
+			</usearg>
+		</item>
+		<item name="store" value="store">
+			<usearg type="PLS13def_Timer">
+			</usearg>
+		</item>
+		<separator>
+		</separator>
+		<separator name="-------- Counters --------">
+		</separator>
+		<item name="inc" value="inc">
+			<usearg type="PLS13def_Counter">
+			</usearg>
+		</item>
+		<item name="clear" value="clear">
+			<usearg type="PLS13def_Counter">
+			</usearg>
+		</item>
+		<item name="store" value="store">
+			<usearg type="PLS13def_Counter">
+			</usearg>
+		</item>
+		<separator>
+		</separator>
+		<separator name="-------- Time information --------">
+		</separator>
+		<item name="timestamps on" value="emit absolute_timestamp">
+		</item>
+		<item name="ticks on" value="emit tick_enable">
+		</item>
+		<separator>
+		</separator>
+		<separator name="-------- Watchpoints --------">
+		</separator>
+		<item name="Watchpoint 0" value="emit watchpoint[0]">
+		</item>
+		<item name="Watchpoint 1" value="emit watchpoint[1]">
+		</item>
+		<item name="Watchpoint 2" value="emit watchpoint[2]">
+		</item>
+		<item name="Watchpoint 3" value="emit watchpoint[3]">
+		</item>
+		<item name="Watchpoint 4" value="emit watchpoint[4]">
+		</item>
+		<item name="Watchpoint 5" value="emit watchpoint[5]">
+		</item>
+		<item name="Watchpoint 6" value="emit watchpoint[6]">
+		</item>
+		<item name="Watchpoint 7" value="emit watchpoint[7]">
+		</item>
+		<item name="Emit user watchpoint">
+			<display>Watchpoint "<useargvalue>
+				</useargvalue>"</display>
+			<value>emit watchpoint as "<useargvalue>
+				</useargvalue>"</value>
+			<usearg type="PLS13def_Watchpoint">
+			</usearg>
+		</item>
+		<separator>
+		</separator>
+		<separator name="-------- Breakpoints --------">
+		</separator>
+		<item name="Halt target (emit break_out)" value="emit break_out">
+		</item>
+		<separator>
+		</separator>
+		<separator name="-------- State Transitions --------">
+		</separator>
+		<item name="goto" value="goto">
+			<usearg type="statelabels">
+			</usearg>
+		</item>
+	</enum>
+	<configblock name="Init TriCore" type="root" id="1.0">
+		<description>Used for initalization of MCDS on TriCore AURIX.</description>
+		<text column="c0" line="1" value="Trigger:">
+			<value>Trigger:</value>
+		</text>
+		<edit column="11" name="trigger" width="17" itemsel="3">
+			<attribute name="enable">
+				<boolval>true</boolval>
+			</attribute>
+			<usearg type="PLS13_Trigger">
+			</usearg>
+			<value>post</value>
+			<description>Relative position of trigger in MCDS trace memory.</description>
+		</edit>
+		<text column="30" line="1" value="Timer Prescaler:">
+			<value>Timer Prescaler:</value>
+		</text>
+		<edit column="46" name="prescaler" width="22" itemsel="1">
+			<attribute name="enable">
+				<boolval>true</boolval>
+			</attribute>
+			<usearg type="PLS13_TimerPrescaler">
+			</usearg>
+			<value>1ms</value>
+			<description>Global prescaler for timers.</description>
+		</edit>
+		<text column="c0" line="2" value="Syncmode:">
+			<value>Syncmode:</value>
+		</text>
+		<edit column="11" name="absmode" width="17" itemsel="0">
+			<attribute name="enable">
+				<boolval>true</boolval>
+			</attribute>
+			<usearg type="PLS13_Synchronization">
+			</usearg>
+			<value>No Sync</value>
+			<description>Specifies which instructions are traced.</description>
+		</edit>
+		<text column="30" line="2" value="break_out routing:">
+			<value>break_out routing:</value>
+		</text>
+		<edit column="46" name="break_routing" width="22" itemsel="1">
+			<attribute name="enable">
+				<boolval>true</boolval>
+			</attribute>
+			<usearg type="BRKOUT_TRGLINE">
+			</usearg>
+			<value>Trigger line 1 (default)</value>
+			<description>Select routing of break out to OCDS Trigger lines.</description>
+		</edit>
+		<text column="c0" line="3" value="Core:">
+			<value>Core:</value>
+		</text>
+		<edit access="global" column="11" name="g_coreX_select" width="17" itemsel="1">
+			<attribute name="enable">
+				<boolval>true</boolval>
+			</attribute>
+			<usearg type="MCDS_MUX_TMUX2">
+			</usearg>
+			<value>Core0</value>
+			<description>Selection which core has to be observed.</description>
+		</edit>
+		<scriptdefine>
+        config.memorysize = 0x2000;
+        config.trigger = <param name="trigger">
+			</param>;
+        config.absmode = <param name="absmode">
+			</param>;
+        config.brkout_trgline = <param name="break_routing">
+			</param>;
+
+        <param name="absmode">
+				<switch>
+					<case equal="0">
+              TAddr.CoreX coreX_pc;
+            </case>
+					<case equal="1">
+              TAddr.CoreXabs coreX_pc;
+            </case>
+					<case equal="2">
+              TAddr.CoreXabs coreX_pc;
+            </case>
+					<default>
+					</default>
+				</switch>
+			</param>
+
+        /* TCX */
+        TAddr.CoreXaddr coreX_addr;
+        TData.CoreXdata coreX_data;
+        TData.CoreXdata.signed coreX_data_signed;
+
+        /* global prescaler of all timers */
+        TTimer.prescaler = <param name="prescaler">
+			</param>;
+
+        mcdsctrl.coreX = <param name="g_coreX_select">
+			</param>;
+      </scriptdefine>
+	</configblock>
+	<configblock name="Signal program address" type="child" id="2.1">
+		<depend>
+			<configblockref href="1.0">
+			</configblockref>
+		</depend>
+		<description>Emits a signal if there is an access at program address.</description>
+		<text column="c0" line="1" value="Signal name:">
+			<value>Signal name:</value>
+		</text>
+		<edit name="signal_name" type="def_signal" width="20">
+			<attribute name="enable">
+				<boolval>true</boolval>
+			</attribute>
+			<value>Finish</value>
+			<description>Name of the defined signal.</description>
+		</edit>
+		<text column="c0" line="ln" value="Code address ==">
+			<value>Code address ==</value>
+		</text>
+		<edit name="address" type="codeaddress" width="38">
+			<attribute name="enable">
+				<boolval>true</boolval>
+			</attribute>
+			<value>Px_trap_hdl_1</value>
+			<description>Address ( 0x0-0xFFFFFFFF) or funktion label.</description>
+		</edit>
+		<scriptdefine>
+        /* define signal on address */
+        TSignal <param name="signal_name">
+			</param> = coreX_pc == <param name="address">
+			</param>;
+      </scriptdefine>
+	</configblock>
+	<configblock name="Actions on condition" type="child" id="5.1">
+		<depend>
+			<configblockref href="1.0">
+			</configblockref>
+		</depend>
+		<description>Emit actions depending on a signal or a user defined conditional expression.</description>
+		<text column="c1" value="If">
+			<value>If</value>
+		</text>
+		<edit name="operator" width="10" itemsel="0">
+			<attribute name="enable">
+				<boolval>true</boolval>
+			</attribute>
+			<usearg type="PLS13_Operators">
+			</usearg>
+			<value>
+			</value>
+			<description>Operator to by applied to the signal / expression.</description>
+		</edit>
+		<edit name="condition" width="24" itemsel="0">
+			<attribute name="enable">
+				<boolval>true</boolval>
+			</attribute>
+			<usearg type="ref_signal">
+			</usearg>
+			<usearg type="def_signal">
+			</usearg>
+			<value>Finish</value>
+			<description>Signal name previously defined or conditional expression.</description>
+		</edit>
+		<text value="then">
+			<value>then</value>
+		</text>
+		<action height="20" name="action" type="root">
+			<usearg type="predefactions">
+			</usearg>
+			<value>trigger trace</value>
+			<description>The actions to be emitted.</description>
+		</action>
+		<scriptbody>
+        if (<param name="operator">
+			</param>(<param name="condition">
+			</param>)) {
+          <param name="action">
+			</param>
+        }
+      </scriptbody>
+	</configblock>
+	<configblock name="Emit actions" type="child" id="5.3">
+		<depend>
+			<configblockref href="1.0">
+			</configblockref>
+		</depend>
+		<description>This block generates one or more unconditional actions.</description>
+		<action height="20" name="action" type="root">
+			<usearg type="predefactions">
+			</usearg>
+			<value>store Core PC</value>
+			<value>store Core data addr</value>
+			<value>store Core data</value>
+			<description>The actions to be emitted.</description>
+		</action>
+		<scriptbody>
+        if (true) {
+          <param name="action">
+			</param>
+        }
+      </scriptbody>
+	</configblock>
+</gtqconfig>
