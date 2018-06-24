@@ -35,7 +35,7 @@
 #include "BASIC/conio_page.h"
 #include "VIEW/ui_view_1_cfg.h"
 #include "VIEW/ui_view_2_cfg.h"
-
+#include "VIEW/ui_view_work_cfg.h"
 
 //-------------------------------------------------------------------- [global functions]
 
@@ -51,6 +51,23 @@ typedef struct
 #pragma section ".data.ui"
 UI_DET_driver_t gUIDET = {FALSE};
 #pragma section
+
+RC_t UI_WORK__init_nmtState(const void *apConfig)
+{
+	RC_t ret = RC_SUCCESS;
+
+	const UI_NMTState_cfg_t *pStateCfg = (const UI_NMTState_cfg_t *)apConfig;
+
+	if (NULL == apConfig)
+		return RC_ERROR_BAD_PARAM;
+
+	ret = CONIO_TEXT_write(&pStateCfg->mKey, pStateCfg->mpKey);
+	if (RC_SUCCESS != ret)
+		return ret;
+
+	return RC_SUCCESS;
+}
+
 
 /**
  * \brief RC_t UI_CARSTATE__init_normalState(const void *apConfig)

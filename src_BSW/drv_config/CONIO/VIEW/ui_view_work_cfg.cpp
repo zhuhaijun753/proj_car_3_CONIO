@@ -14,6 +14,7 @@
 #include <cstdlib>
 //-------------------------------------------------------------------- [Defines]
 
+#define UI_NMT_STATE_KEY_STR			"NMT :"
 #define UI_NORMAL_STATE_KEY_STR 		"(.)(.):"
 #define UI_SAFETY_STATE_KEY_STR 		"SS :"
 #define UI_SAFETY_RUNNABLE_STR			"RUN:"
@@ -21,6 +22,7 @@
 #define UI_TARGET_SPEED_KEY_STR 		"TS :"
 #define UI_ENGINE_KEY_STR 				"ENG:"
 
+#define UI_NMT_STATE_VAL_WIDTH			(16) //7 + 2'()' + 2 + 1
 #define UI_NORMAL_STATE_VAL_WIDTH		(16) //7 + 2'()' + 2 + 1
 
 #define UI_SAFETY_STATE_VAL_WIDTH		(16) //7 + 2'()' + 2 + 1
@@ -56,6 +58,8 @@
 
 #pragma section ".data.ui"
 
+/** \brief NMT state UI data */
+UI_NMT_data_t			gUINMTStateWork;
 /** \brief CAR state UI data */
 UI_carState_data_t		gUICarStateWork;
 /** \brief Joystick UI data */
@@ -76,8 +80,16 @@ UI_carSafetyRunnable_data_t gUISafetyRunnableWork;
 
 #if ((CONIO_MODE == CONIO_REV_LANDSCAPE) || (CONIO_MODE == CONIO_LANDSCAPE))
 
+/** \brief NMT state UI config */
+const UI_NMTState_cfg_t gUINMTStateCfg =
+	{
+		{{0, 11}, strlen(UI_NMT_STATE_KEY_STR), RGB565_BLACK, RGB565_WHITE},
+		UI_NMT_STATE_KEY_STR,
+		{{(strlen(UI_NMT_STATE_KEY_STR) + 1), 10}, UI_NMT_STATE_VAL_WIDTH, RGB565_BLACK, RGB565_WHITE}
+	};
+
 /** \brief Normal state UI config */
-const UI_normalState_cfg_t gUINormStateCfg =
+const UI_normalState_cfg_dep_t gUINormStateCfg =
 	{
 		{{0, 10}, strlen(UI_NORMAL_STATE_KEY_STR), RGB565_BLACK, RGB565_WHITE},
 		UI_NORMAL_STATE_KEY_STR,
@@ -85,7 +97,7 @@ const UI_normalState_cfg_t gUINormStateCfg =
 	};
 
 /** \brief Safety state UI config */
-const UI_safetyState_cfg_t gUISafeStateCfg =
+const UI_safetyState_cfg_dep_t gUISafeStateCfg =
 	{
 		{{0, 9}, strlen(UI_SAFETY_STATE_KEY_STR), RGB565_BLACK, RGB565_WHITE},
 		UI_SAFETY_STATE_KEY_STR,
@@ -93,7 +105,7 @@ const UI_safetyState_cfg_t gUISafeStateCfg =
 	};
 
 /** \brief Safety runnable UI config */
-const UI_safety_runnable_cfg_t gUISafetyRunnableWorkCfg =
+const UI_safety_runnable_cfg_dep_t gUISafetyRunnableWorkCfg =
 	{
 		{{0, 8}, strlen(UI_SAFETY_RUNNABLE_STR), RGB565_BLACK, RGB565_WHITE},
 		UI_SAFETY_RUNNABLE_STR,
@@ -101,7 +113,7 @@ const UI_safety_runnable_cfg_t gUISafetyRunnableWorkCfg =
 	};
 
 /** \brief Joystick UI config */
-const UI_joystick_cfg_t gUIJoystickWorkCfg =
+const UI_joystick_cfg_dep_t gUIJoystickWorkCfg =
 	{
 		{{0, UI_JOYSTICK_LINE}, strlen(UI_JOYSTICK_KEY_STR), RGB565_BLACK, RGB565_WHITE},
 		UI_JOYSTICK_KEY_STR,
@@ -125,7 +137,7 @@ const UI_joystick_cfg_t gUIJoystickWorkCfg =
 
 
 /** \brief target speed UI config */
-const UI_targetSpeed_cfg_t gUITargetSpdWorkCfg =
+const UI_targetSpeed_cfg_dep_t gUITargetSpdWorkCfg =
 	{
 		{{0, UI_TARGET_SPEED_LINE}, strlen(UI_TARGET_SPEED_KEY_STR), RGB565_BLACK, RGB565_WHITE},
 		UI_TARGET_SPEED_KEY_STR,
@@ -138,7 +150,7 @@ const UI_targetSpeed_cfg_t gUITargetSpdWorkCfg =
 	};
 
 /** \brief engine UI config */
-const UI_engine_cfg_t gUIEngineWorkCfg =
+const UI_engine_cfg_dep_t gUIEngineWorkCfg =
 	{
 		{{0, 4}, strlen(UI_ENGINE_KEY_STR), RGB565_BLACK, RGB565_WHITE}, 	/** mKey **/
 		UI_ENGINE_KEY_STR,						   							/** mpKey **/
@@ -238,6 +250,11 @@ const CONIO_RECTBUTTON_cfg_t gUI1NextPageButton =
 /** \brief View 1 output config */
 const CONIO_PAGE_outputElement_t gUIViewWorkOutCfg[] =
 {
+	/* NMT State Entry */
+	{
+		TRUE, &gUINMTStateCfg, &gUINMTStateWork,
+		&UI_WORK__init_nmtState, NULL, NULL
+	},
 	/* Normal State Entry */
 	{
 		TRUE, &gUINormStateCfg, &gUICarStateWork,

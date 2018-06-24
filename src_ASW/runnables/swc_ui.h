@@ -39,6 +39,12 @@
 
 //-------------------------------------------------------------------- [Types]
 
+typedef struct
+{
+	boolean_t mbIsNew;
+	CANopen_NMT_states_t mNMTState;
+}UI_NMT_data_t;
+
 /** \brief UI car state data type*/
 typedef struct
 {
@@ -400,6 +406,8 @@ RC_t UI_CARSTATE__event_DET_scrollDOWN(const void* apConfig);
  */
 RC_t UI_CARSTATE__event_DET_scrollUP(const void* apConfig);
 
+
+RC_t UI_WORK__init_nmtState(const void *apConfig);
 #ifdef __cplusplus
 }
 #endif
