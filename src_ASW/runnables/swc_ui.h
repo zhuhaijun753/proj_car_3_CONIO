@@ -41,8 +41,12 @@
 
 typedef struct
 {
-	boolean_t mbIsNew;
-	CANopen_NMT_states_t mNMTState;
+	boolean_t mbLidarIsNew;
+	boolean_t mbEnRLIsNew;
+	boolean_t mbEnRRIsNew;
+	boolean_t mbEnFLIsNew;
+	boolean_t mbEnFRIsNew;
+	NMT_data_t mNMTData;
 }UI_NMT_data_t;
 
 /** \brief UI car state data type*/
@@ -408,6 +412,9 @@ RC_t UI_CARSTATE__event_DET_scrollUP(const void* apConfig);
 
 
 RC_t UI_WORK__init_nmtState(const void *apConfig);
+RC_t UI_WORK__read_normalState(void *apData, CONIO_PAGE_elementUpdateState_t updateState);
+RC_t UI_CARWORK__update_NMTState(const void *apConfig, void *apData);
+RC_t UI_WORK__init_nmtLabel(const void *apConfig);
 #ifdef __cplusplus
 }
 #endif
