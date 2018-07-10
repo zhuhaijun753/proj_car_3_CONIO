@@ -21,24 +21,22 @@
 #define UI_NMT_STATE_PREOP_STR			"PROP"
 
 //-------------------------------------------------------------------- [Types]
+typedef struct
+{
+	CONIO_TEXT_t	mLabel;
+	const char_t	*mpLabel;
+	CONIO_TEXT_t	mState;
+}UI_NMTStateEntry_cfg_t;
 
 typedef struct
 {
-	CONIO_TEXT_t 	mKey;
-	const char_t	*mpKey;
-
-}UI_NMTLabel_cfg_t;
-
-typedef struct
-{
-	CONIO_TEXT_t	mLidarNMT;
-	CONIO_TEXT_t	mEngineRLNMT;
-	CONIO_TEXT_t	mEngineRRNMT;
-	CONIO_TEXT_t	mEngineFLNMT;
-	CONIO_TEXT_t	mEngineFRNMT;
-
-}UI_NMTState_cfg_t;
-
-
+	CONIO_TEXT_t	mHeader;
+	const char_t	*mpHeader;
+	UI_NMTStateEntry_cfg_t mLidarNMT;
+	UI_NMTStateEntry_cfg_t mEngineRLNMT;
+	UI_NMTStateEntry_cfg_t mEngineRRNMT;
+	UI_NMTStateEntry_cfg_t mEngineFLNMT;
+	UI_NMTStateEntry_cfg_t mEngineFRNMT;
+}UI_NMTStateDisplay_cfg_t;
 
 #endif /* SRC_BSW_DRV_CONFIG_CONIO_VIEW_UI_VIEW_WORK_CFG_H_ */
