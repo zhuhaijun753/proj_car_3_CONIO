@@ -28,7 +28,7 @@
 #define UI_NMT_LABEL_ENFR_LINE			(6)
 
 #define UI_NMT_STATE_VAL_WIDTH			(4) // For example "OPRT"
-#define UI_NMT_STATE_MARGIN				(6) // For example "LIDR: "
+#define UI_NMT_STATE_MARGIN				(strlen(UI_NMT_LABEL_LIDR_STR) + 1) // For example "LIDR: "
 #define UI_NMT_STATE_OFFSET				(UI_NMT_STATE_VAL_WIDTH + 1)
 
 #define UI_PAGEWORK_NEXTBUTTON_WIDTH		(72)
