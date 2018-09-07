@@ -39,7 +39,7 @@
 /** \brief UI View Pointers */
 const CONIO_PAGE_cfg_t *gpUIViews[] =
 	{
-		&gUIViewWork,
+		&gUIView3,
 		&gUIView1,
 		&gUIView2,
 		NULL

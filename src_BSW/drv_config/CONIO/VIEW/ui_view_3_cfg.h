@@ -1,12 +1,12 @@
 /*
- * ui_view_work_cfg.h
+ * ui_view_3_cfg.h
  *
  *  Created on: Jun 23, 2018
  *      Author: dinhq
  */
 
-#ifndef SRC_BSW_DRV_CONFIG_CONIO_VIEW_UI_VIEW_WORK_CFG_H_
-#define SRC_BSW_DRV_CONFIG_CONIO_VIEW_UI_VIEW_WORK_CFG_H_
+#ifndef SRC_BSW_DRV_CONFIG_CONIO_VIEW_UI_VIEW_3_CFG_H_
+#define SRC_BSW_DRV_CONFIG_CONIO_VIEW_UI_VIEW_3_CFG_H_
 
 //-------------------------------------------------------------------- [Includes]
 
@@ -39,4 +39,4 @@ typedef struct
 	UI_NMTStateEntry_cfg_t mEngineFRNMT;
 }UI_NMTStateDisplay_cfg_t;
 
-#endif /* SRC_BSW_DRV_CONFIG_CONIO_VIEW_UI_VIEW_WORK_CFG_H_ */
+#endif /* SRC_BSW_DRV_CONFIG_CONIO_VIEW_UI_VIEW_3_CFG_H_ */

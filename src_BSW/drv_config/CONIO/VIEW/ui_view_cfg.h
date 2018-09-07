@@ -37,7 +37,7 @@
 
 //-------------------------------------------------------------------- [Global Data]
 
-EXTERN const CONIO_PAGE_cfg_t gUIViewWork;
+EXTERN const CONIO_PAGE_cfg_t gUIView3;
 
 EXTERN const CONIO_PAGE_cfg_t gUIView1;
 

@@ -4,7 +4,7 @@
  *  Created on: Jun 23, 2018
  *      Author: dinhq
  */
-#include "ui_view_work_cfg.h"
+#include "ui_view_3_cfg.h"
 #include "VIEW/ui_view_cfg.h"
 
 #include "swc_ui.h"
@@ -107,8 +107,8 @@ const CONIO_RECTBUTTON_cfg_t gUI1NextPageButton =
 #endif
 
 
-/** \brief View 1 output config */
-const CONIO_PAGE_outputElement_t gUIViewWorkOutCfg[] =
+/** \brief View 3 output config */
+const CONIO_PAGE_outputElement_t gUIView3OutCfg[] =
 {
 	/* NMT Display Entry */
 	{
@@ -123,8 +123,8 @@ const CONIO_PAGE_outputElement_t gUIViewWorkOutCfg[] =
 	}
 };
 
-/** \brief View 1 input config */
-const CONIO_PAGE_inputElement_t gUIViewWorkInCfg[] =
+/** \brief View 3 input config */
+const CONIO_PAGE_inputElement_t gUIView3InCfg[] =
 {
 	/* Next Page Button */
 	{TRUE, &gUI1NextPageButton, &CONIO_RECTBUTTON_init, &CONIO_RECTBUTTON_isPressed, PAGE_ACTION_SWITCH_NEXT, NULL},
@@ -133,9 +133,9 @@ const CONIO_PAGE_inputElement_t gUIViewWorkInCfg[] =
 };
 
 /** \brief View 1 config */
-const CONIO_PAGE_cfg_t gUIViewWork =
+const CONIO_PAGE_cfg_t gUIView3 =
 {
-		UI_PAGEWORK_TFA, UI_PAGEWORK_BFA, &gUIViewWorkOutCfg[0], &gUIViewWorkInCfg[0], RGB565_WHITE
+		UI_PAGEWORK_TFA, UI_PAGEWORK_BFA, &gUIView3OutCfg[0], &gUIView3InCfg[0], RGB565_WHITE
 };
 
 #pragma section

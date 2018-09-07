@@ -35,7 +35,7 @@
 #include "BASIC/conio_page.h"
 #include "VIEW/ui_view_1_cfg.h"
 #include "VIEW/ui_view_2_cfg.h"
-#include "VIEW/ui_view_work_cfg.h"
+#include "VIEW/ui_view_3_cfg.h"
 
 //-------------------------------------------------------------------- [global functions]
 
