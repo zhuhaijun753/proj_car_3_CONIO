@@ -411,10 +411,10 @@ RC_t UI_CARSTATE__event_DET_scrollDOWN(const void* apConfig);
 RC_t UI_CARSTATE__event_DET_scrollUP(const void* apConfig);
 
 
-RC_t UI_WORK__init_nmtState(const void *apConfig);
-RC_t UI_WORK__read_normalState(void *apData, CONIO_PAGE_elementUpdateState_t updateState);
-RC_t UI_CARWORK__update_NMTState(const void *apConfig, void *apData);
-RC_t UI_WORK__init_nmtDisplay(const void *apConfig);
+RC_t UI_NMT__init_nmtState(const void *apConfig);
+RC_t UI_NMT__read_nmtState(void *apData, CONIO_PAGE_elementUpdateState_t updateState);
+RC_t UI_NMT__update_nmtState(const void *apConfig, void *apData);
+RC_t UI_NMT__init_nmtDisplay(const void *apConfig);
 #ifdef __cplusplus
 }
 #endif

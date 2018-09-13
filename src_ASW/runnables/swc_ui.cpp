@@ -52,7 +52,7 @@ typedef struct
 UI_DET_driver_t gUIDET = {FALSE};
 #pragma section
 
-RC_t UI_WORK__init_nmtDisplay(const void *apConfig)
+RC_t UI_NMT__init_nmtDisplay(const void *apConfig)
 {
 	RC_t ret = RC_SUCCESS;
 
@@ -70,7 +70,7 @@ RC_t UI_WORK__init_nmtDisplay(const void *apConfig)
 	return ret;
 }
 
-RC_t UI_WORK__read_normalState(void *apData, CONIO_PAGE_elementUpdateState_t updateState)
+RC_t UI_NMT__read_nmtState(void *apData, CONIO_PAGE_elementUpdateState_t updateState)
 {
 	UI_NMT_data_t *pNMTData = (UI_NMT_data_t *) apData;
 	NMT_data_t data = NMT_get(&so_in_NMT);
@@ -143,20 +143,20 @@ RC_t UI_WORK__read_normalState(void *apData, CONIO_PAGE_elementUpdateState_t upd
 			pNMTData->mbEnFRIsNew = FALSE;
 		}
 	}
-	if (data.NMT_lidar == CANopen_NMT_STATE_Initialization)
+	// For testing responsiveness
+	/*if (data.NMT_lidar == CANopen_NMT_STATE_Initialization)
 	{
-		//NMT_write(&so_in_NMT, (NMT_data_t) {CANopen_NMT_STATE_PreOperational});
+		NMT_write(&so_in_NMT, (NMT_data_t) {CANopen_NMT_STATE_PreOperational});
 	}
 	else
 	{
-		//NMT_write(&so_in_NMT, (NMT_data_t) {CANopen_NMT_STATE_Initialization});
-	}
+		NMT_write(&so_in_NMT, (NMT_data_t) {CANopen_NMT_STATE_Initialization});
+	}*/
 
 	return RC_SUCCESS;
 }
 
-
-static RC_t UI_CARWORK_update_state(boolean_t isNew, CANopen_NMT_states_t state, const CONIO_TEXT_t * text)
+static RC_t UI_NMT_update_state(boolean_t isNew, CANopen_NMT_states_t state, const CONIO_TEXT_t * text)
 {
 	RC_t ret = RC_SUCCESS;
 	if (isNew)
@@ -190,32 +190,29 @@ static RC_t UI_CARWORK_update_state(boolean_t isNew, CANopen_NMT_states_t state,
 	return ret;
 }
 
-RC_t UI_CARWORK__update_NMTState(const void *apConfig, void *apData)
+RC_t UI_NMT__update_nmtState(const void *apConfig, void *apData)
 {
 	RC_t ret = RC_SUCCESS;
 
-	//const UI_carState_data_t	*pCarState = (const UI_carState_data_t *)apData;
 	const UI_NMT_data_t *pNMTData = (const UI_NMT_data_t *) apData;
-	//UI_normalState_cfg_t *pStateCfg = (UI_normalState_cfg_t *)apConfig;
 	UI_NMTStateDisplay_cfg_t *pStateCfg = (UI_NMTStateDisplay_cfg_t *)apConfig;
-	//STATE_normalState_t nState;
 
 	if ((NULL == apData) || (NULL == apConfig))
 		return RC_ERROR_BAD_PARAM;
 
-	ret = UI_CARWORK_update_state(pNMTData->mbLidarIsNew, pNMTData->mNMTData.NMT_lidar, &(pStateCfg->mLidarNMT.mState));
+	ret = UI_NMT_update_state(pNMTData->mbLidarIsNew, pNMTData->mNMTData.NMT_lidar, &(pStateCfg->mLidarNMT.mState));
 	if (ret != RC_SUCCESS)
 		return ret;
-	ret = UI_CARWORK_update_state(pNMTData->mbEnRLIsNew, pNMTData->mNMTData.NMT_engineRL, &(pStateCfg->mEngineRLNMT.mState));
+	ret = UI_NMT_update_state(pNMTData->mbEnRLIsNew, pNMTData->mNMTData.NMT_engineRL, &(pStateCfg->mEngineRLNMT.mState));
 	if (ret != RC_SUCCESS)
 		return ret;
-	ret = UI_CARWORK_update_state(pNMTData->mbEnRRIsNew, pNMTData->mNMTData.NMT_engineRR, &(pStateCfg->mEngineRRNMT.mState));
+	ret = UI_NMT_update_state(pNMTData->mbEnRRIsNew, pNMTData->mNMTData.NMT_engineRR, &(pStateCfg->mEngineRRNMT.mState));
 	if (ret != RC_SUCCESS)
 		return ret;
-	ret = UI_CARWORK_update_state(pNMTData->mbEnFLIsNew, pNMTData->mNMTData.NMT_engineFL, &(pStateCfg->mEngineFLNMT.mState));
+	ret = UI_NMT_update_state(pNMTData->mbEnFLIsNew, pNMTData->mNMTData.NMT_engineFL, &(pStateCfg->mEngineFLNMT.mState));
 	if (ret != RC_SUCCESS)
 		return ret;
-	ret = UI_CARWORK_update_state(pNMTData->mbEnFRIsNew, pNMTData->mNMTData.NMT_engineFR, &(pStateCfg->mEngineFRNMT.mState));
+	ret = UI_NMT_update_state(pNMTData->mbEnFRIsNew, pNMTData->mNMTData.NMT_engineFR, &(pStateCfg->mEngineFRNMT.mState));
 	return ret;
 }
 

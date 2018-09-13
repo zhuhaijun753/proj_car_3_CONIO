@@ -113,7 +113,7 @@ const CONIO_PAGE_outputElement_t gUIView3OutCfg[] =
 	/* NMT Display Entry */
 	{
 		TRUE, &gUINMTDisplayCfg, &gUINMTStateWork,
-		&UI_WORK__init_nmtDisplay, UI_WORK__read_normalState, UI_CARWORK__update_NMTState
+		&UI_NMT__init_nmtDisplay, UI_NMT__read_nmtState, UI_NMT__update_nmtState
 	},
 
 	/* Mandatory Empty Entry */
