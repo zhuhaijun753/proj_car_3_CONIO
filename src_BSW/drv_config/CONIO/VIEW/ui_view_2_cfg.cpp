@@ -53,6 +53,9 @@
 #define UI_PAGE2_PREVBUTTON_WIDTH		(72)
 #define UI_PAGE2_PREVBUTTON_HEIGHT		(CONIO_TEXT_Y_INC)
 
+#define UI_PAGE2_NEXTBUTTON_WIDTH		(72)
+#define UI_PAGE2_NEXTBUTTON_HEIGHT		(CONIO_TEXT_Y_INC)
+
 #define UI_PAGE2_TFA					(CONIO_TEXT_Y_INC)
 #define UI_PAGE2_BFA					(2 * CONIO_TEXT_Y_INC)
 
@@ -108,6 +111,21 @@ const CONIO_RECTBUTTON_cfg_t gUI2PrevPageButton =
 		NULL,
 		RGB565_GREEN
 	};
+
+/** \brief UI next button */
+const CONIO_RECTBUTTON_cfg_t gUI2NextPageButton =
+	{
+		{
+			{(CONIO_PAGE_MAX_WIDTH - UI_PAGE2_NEXTBUTTON_WIDTH), 0},
+			UI_PAGE2_NEXTBUTTON_WIDTH,
+			UI_PAGE2_NEXTBUTTON_HEIGHT,
+			RGB565_BLACK
+		},
+		{{0, 0}, 0, RGB565_BLACK, RGB565_WHITE}, 	/** mKey **/
+		NULL,
+		RGB565_GREEN
+	};
+
 
 /** \brief UI next button */
 const CONIO_RECTBUTTON_cfg_t gUI2ScrollUpButton =
@@ -249,6 +267,12 @@ const CONIO_PAGE_inputElement_t gUIView2InCfg[] =
 		TRUE, &gUI2PrevPageButton,
 		&CONIO_RECTBUTTON_init, &CONIO_RECTBUTTON_isPressed,
 		PAGE_ACTION_SWITCH_PREV, &UI_CARSTATE__reset_DET
+	},
+	/* Next Page Button */
+	{
+		TRUE, &gUI2NextPageButton,
+		&CONIO_RECTBUTTON_init, &CONIO_RECTBUTTON_isPressed,
+		PAGE_ACTION_SWITCH_NEXT, &UI_CARSTATE__reset_DET
 	},
 	/* Scroll Down Button */
 	{
