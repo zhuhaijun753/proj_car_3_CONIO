@@ -172,13 +172,8 @@ void CView::inputActionHandler(CONIO_PAGE_inputAction_t mAction)
 
 		notification.set(mode);
 
-
-		for (uint16_t i = 0; i < mnViewChangeObservers; i++)
-		{
-			mpViewChangeObservers[i]->notify(notification);
-		}
-
-
+		// HD: Originally a loop to notify all of the observers
+		mpViewChangeObservers[0]->notify(notification);
 	}
 	break;
 
@@ -193,10 +188,8 @@ void CView::inputActionHandler(CONIO_PAGE_inputAction_t mAction)
 
 		notification.set(mode);
 
-		for (uint16_t i = 0; i < mnViewChangeObservers; i++)
-		{
-			mpViewChangeObservers[i]->notify(notification);
-		}
+		// HD: Originally a loop to notify all of the observers
+		mpViewChangeObservers[0]->notify(notification);
 	}
 	break;
 
