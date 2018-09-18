@@ -31,8 +31,8 @@
 #define UI_NMT_STATE_MARGIN				(strlen(UI_NMT_LABEL_LIDR_STR) + 1) // For example "LIDR: "
 #define UI_NMT_STATE_OFFSET				(UI_NMT_STATE_VAL_WIDTH + 1)
 
-#define UI_PAGEWORK_NEXTBUTTON_WIDTH		(72)
-#define UI_PAGEWORK_NEXTBUTTON_HEIGHT		(CONIO_TEXT_Y_INC)
+#define UI_PAGE3_PREVBUTTON_WIDTH		(72)
+#define UI_PAGE3_PREVBUTTON_HEIGHT		(CONIO_TEXT_Y_INC)
 
 #define UI_PAGEWORK_TFA					(0)
 #define UI_PAGEWORK_BFA					(24)
@@ -90,19 +90,20 @@ const UI_NMTStateDisplay_cfg_t gUINMTDisplayCfg =
 				{{UI_NMT_STATE_MARGIN, UI_NMT_LABEL_ENFR_LINE}, UI_NMT_STATE_VAL_WIDTH, RGB565_BLACK, RGB565_WHITE}
 		}
 	};
-/** \brief UI next button */
-const CONIO_RECTBUTTON_cfg_t gUI1NextPageButton =
+/** \brief UI prev button */
+const CONIO_RECTBUTTON_cfg_t gUI3PrevPageButton =
 	{
 		{
-			{(CONIO_PAGE_MAX_WIDTH - UI_PAGEWORK_NEXTBUTTON_WIDTH), 0},
-			UI_PAGEWORK_NEXTBUTTON_WIDTH,
-			UI_PAGEWORK_NEXTBUTTON_HEIGHT,
+			{0, 0},
+			UI_PAGE3_PREVBUTTON_WIDTH,
+			UI_PAGE3_PREVBUTTON_HEIGHT,
 			RGB565_BLACK
 		},
 		{{0, 0}, 0, RGB565_BLACK, RGB565_WHITE}, 	/** mKey **/
 		NULL,
 		RGB565_GREEN
 	};
+
 
 #endif
 
@@ -127,7 +128,7 @@ const CONIO_PAGE_outputElement_t gUIView3OutCfg[] =
 const CONIO_PAGE_inputElement_t gUIView3InCfg[] =
 {
 	/* Next Page Button */
-	{TRUE, &gUI1NextPageButton, &CONIO_RECTBUTTON_init, &CONIO_RECTBUTTON_isPressed, PAGE_ACTION_SWITCH_NEXT, NULL},
+	{TRUE, &gUI3PrevPageButton, &CONIO_RECTBUTTON_init, &CONIO_RECTBUTTON_isPressed, PAGE_ACTION_SWITCH_PREV, NULL},
 	/* Mandatory Empty Entry */
 	{FALSE, NULL, NULL, NULL, PAGE_ACTION_NONE, NULL}
 };
