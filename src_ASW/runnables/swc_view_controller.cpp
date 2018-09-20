@@ -189,8 +189,8 @@ void CViewController::notify(CViewChangeNotification& notification)
 	{
 		if (mnCurViewPos != (mnViewCnt - 1))
 		{
-			mCurView.set(gpUIViews[++mnCurViewPos]);
 			mCurView.clearViewChangeObserver();
+			mCurView.set(gpUIViews[++mnCurViewPos]);
 			renderCurView();
 		}
 	}
@@ -200,8 +200,8 @@ void CViewController::notify(CViewChangeNotification& notification)
 	{
 		if (mnCurViewPos != 0)
 		{
-			mCurView.set(gpUIViews[--mnCurViewPos]);
 			mCurView.clearViewChangeObserver();
+			mCurView.set(gpUIViews[--mnCurViewPos]);
 			renderCurView();
 		}
 	}
