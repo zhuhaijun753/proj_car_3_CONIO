@@ -150,6 +150,20 @@ RC_t CView::model()
 }
 
 /**
+ * \brief void clearViewChangeObserver();
+ *
+ * clear the list of view change observers of the current CView
+ *
+ * \return void
+ *
+ */
+void CView::clearViewChangeObserver(void)
+{
+	mnViewChangeObservers = 0;
+}
+
+
+/**
  * \brief void inputActionHandler(CONIO_PAGE_input_t mAction)
  *
  * handles an input

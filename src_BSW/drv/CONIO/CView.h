@@ -90,6 +90,16 @@ public:
 	void set(const CONIO_PAGE_cfg_t *apPageCfg);
 
 	/**
+	 * \brief void clearViewChangeObserver();
+	 *
+	 * clear the list of view change observers of the current CView
+	 *
+	 * \return void
+	 *
+	 */
+	void clearViewChangeObserver(void);
+
+	/**
 	 * \brief RC_t registerViewChangeObserver(IViewChangeObserver *observer)
 	 *
 	 * register a view change observer
