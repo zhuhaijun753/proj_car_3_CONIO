@@ -52,6 +52,16 @@ typedef struct
 UI_DET_driver_t gUIDET = {FALSE};
 #pragma section
 
+/**
+ * \brief RC_t UI_NMT__init_nmtDisplay(const void *apConfig);
+ *
+ * Initialize NMT state field.
+ *
+ * \param	apConfig : configuration
+ * \return #RC_ERROR_BAD_PARAM if invalid configuration
+ * \return #RC_SUCCESS otherwise
+ *
+ */
 RC_t UI_NMT__init_nmtDisplay(const void *apConfig)
 {
 	RC_t ret = RC_SUCCESS;
@@ -70,6 +80,16 @@ RC_t UI_NMT__init_nmtDisplay(const void *apConfig)
 	return ret;
 }
 
+/**
+ * \brief RC_t UI_NMT__read_nmtState(void *apData, CONIO_PAGE_elementUpdateState_t updateState);
+ *
+ * read NMT states
+ *
+ * \param 	apData		: data to update
+ * \return #RC_ERROR_BAD_PARAM if invalid data handle
+ * \return #RC_SUCCESS otherwise
+ *
+ */
 RC_t UI_NMT__read_nmtState(void *apData, CONIO_PAGE_elementUpdateState_t updateState)
 {
 	UI_NMT_data_t *pNMTData = (UI_NMT_data_t *) apData;
@@ -143,15 +163,6 @@ RC_t UI_NMT__read_nmtState(void *apData, CONIO_PAGE_elementUpdateState_t updateS
 			pNMTData->mbEnFRIsNew = FALSE;
 		}
 	}
-	// For testing responsiveness
-	/*if (data.NMT_lidar == CANopen_NMT_STATE_Initialization)
-	{
-		NMT_write(&so_in_NMT, (NMT_data_t) {CANopen_NMT_STATE_PreOperational});
-	}
-	else
-	{
-		NMT_write(&so_in_NMT, (NMT_data_t) {CANopen_NMT_STATE_Initialization});
-	}*/
 
 	return RC_SUCCESS;
 }
@@ -190,6 +201,17 @@ static RC_t UI_NMT_update_state(boolean_t isNew, CANopen_NMT_states_t state, con
 	return ret;
 }
 
+/**
+ * \brief RC_t UI_NMT__update_nmtState(const void *apConfig, void *apData);
+ *
+ * update NMT state field.
+ *
+ * \param	apConfig 	: configuration
+ * \param 	apData		: data to update
+ * \return #RC_ERROR_BAD_PARAM if invalid configuration
+ * \return #RC_SUCCESS otherwise
+ *
+ */
 RC_t UI_NMT__update_nmtState(const void *apConfig, void *apData)
 {
 	RC_t ret = RC_SUCCESS;

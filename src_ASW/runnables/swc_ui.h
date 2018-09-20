@@ -410,10 +410,41 @@ RC_t UI_CARSTATE__event_DET_scrollDOWN(const void* apConfig);
  */
 RC_t UI_CARSTATE__event_DET_scrollUP(const void* apConfig);
 
-
-RC_t UI_NMT__init_nmtState(const void *apConfig);
+/**
+ * \brief RC_t UI_NMT__read_nmtState(void *apData, CONIO_PAGE_elementUpdateState_t updateState);
+ *
+ * read NMT state field.
+ *
+ * \param 	apData		: data to update
+ * \return #RC_ERROR_BAD_PARAM if invalid data handle
+ * \return #RC_SUCCESS otherwise
+ *
+ */
 RC_t UI_NMT__read_nmtState(void *apData, CONIO_PAGE_elementUpdateState_t updateState);
+
+/**
+ * \brief RC_t UI_NMT__update_nmtState(const void *apConfig, void *apData);
+ *
+ * update NMT state field.
+ *
+ * \param	apConfig 	: configuration
+ * \param 	apData		: data to update
+ * \return #RC_ERROR_BAD_PARAM if invalid configuration
+ * \return #RC_SUCCESS otherwise
+ *
+ */
 RC_t UI_NMT__update_nmtState(const void *apConfig, void *apData);
+
+/**
+ * \brief RC_t UI_NMT__init_nmtDisplay(const void *apConfig);
+ *
+ * Initialize NMT state field.
+ *
+ * \param	apConfig : configuration
+ * \return #RC_ERROR_BAD_PARAM if invalid configuration
+ * \return #RC_SUCCESS otherwise
+ *
+ */
 RC_t UI_NMT__init_nmtDisplay(const void *apConfig);
 #ifdef __cplusplus
 }
